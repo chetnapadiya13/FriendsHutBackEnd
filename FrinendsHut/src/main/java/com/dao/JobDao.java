@@ -13,6 +13,7 @@ public interface JobDao {
 	public boolean updateJob(Job job);
 	public boolean deleteJob(Job job);
 	public boolean applyJob(Job job);
-	
+	//public List<ApplyJob> getAllAppliedJobDetails();
+	// public List<ApplyJob> getAllAppliedJobDetails();
 
 }

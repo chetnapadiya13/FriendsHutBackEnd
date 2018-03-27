@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.dao.BlogDao;
 import com.model.Blog;
+import com.model.BlogComment;
 
 @Repository("BlogDao")
 public class BlogDaoImpl implements BlogDao{
@@ -106,6 +107,38 @@ public class BlogDaoImpl implements BlogDao{
 			System.out.println("Exception Arised:"+e);
 			return false;
 		}
+	}
+	public boolean approveBlog(Blog blog) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean rejectBlog(Blog blog) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public List<Blog> listBlog(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public boolean incrementLike(Blog blog) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean addBlogComment(BlogComment blogComment) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean deleteBlogComment(BlogComment blogComment) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public BlogComment getBlogComment(int commentId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public List<BlogComment> listBlogComments(int blogid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

@@ -1,41 +1,70 @@
 package com.model;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 public class ForumComment{
+	@Id 
+	@Column(name = "ForumCommentId")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
+    @SequenceGenerator(name = "id_Sequence", sequenceName = "forum_comment_ID_SEQ")
+	private int ForumCommentId;
+	private int fcLike;
 	
-	private String blogId;
-	private String blogName;
-	private String blogContent;
-	private String createdDate;
+	
+	
+	public int getFcLike() {
+		return fcLike;
+	}
+
+	public void setFcLike(int fcLike) {
+		this.fcLike = fcLike;
+	}
+
+	@Column(name="forumComment")
+	private String forumComment;
+	
+	//relational mapping required 
+	@Column(name="userName")
 	private String userName;
-	public  String getBlogId() {
-		return blogId;
+	
+	//manytomany relation mapping required
+	@Column(name="forumid")
+	private int forumId;
+
+	public int getForumCommentId() {
+		return ForumCommentId;
 	}
-	public  void setBlogId(String blogId) {
-		this.blogId = blogId;
+
+	public void setForumCommentId(int forumCommentId) {
+		ForumCommentId = forumCommentId;
 	}
-	public  String getBlogName() {
-		return blogName;
+
+	public String getForumComment() {
+		return forumComment;
 	}
-	public  void setBlogName(String blogName) {
-		this.blogName = blogName;
+
+	public void setForumComment(String forumComment) {
+		this.forumComment = forumComment;
 	}
-	public  String getBlogContent() {
-		return blogContent;
-	}
-	public  void setBlogContent(String blogContent) {
-		this.blogContent = blogContent;
-	}
-	public  String getCreatedDate() {
-		return createdDate;
-	}
-	public  void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
-	}
-	public  String getUserName() {
+
+	public String getUserName() {
 		return userName;
 	}
-	public  void setUserName(String userName) {
+
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	public int getForumId() {
+		return forumId;
+	}
+
+	public void setForumId(int forumId) {
+		this.forumId = forumId;
+	}
+	
 	
 }

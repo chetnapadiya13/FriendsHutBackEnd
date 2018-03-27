@@ -16,7 +16,9 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.model.Blog;
+import com.model.BlogComment;
 import com.model.Forum;
+import com.model.ForumComment;
 import com.model.Job;
 import com.model.User;
 
@@ -51,7 +53,8 @@ public class HibernateConfig {
 		try{
 		Properties hibernateProperties=new Properties();
 		hibernateProperties.put("hibernate.temp.use_jdbc_metadata_defaults","false");
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto","update");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto","UPDATE");
+	//	hibernateProperties.setProperty("hibernate.hbm2ddl.auto","NONE");
 		hibernateProperties.put("hibernate.show_sql", "true");
 		hibernateProperties.put("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
 		
@@ -61,9 +64,9 @@ public class HibernateConfig {
 		localSessionFacBuilder.addAnnotatedClass(User.class);	
 		localSessionFacBuilder.addAnnotatedClass(Blog.class);
 		localSessionFacBuilder.addAnnotatedClass(Forum.class);	
-		localSessionFacBuilder.addAnnotatedClass(Job.class);	
-		
-		
+		localSessionFacBuilder.addAnnotatedClass(Job.class);
+		localSessionFacBuilder.addAnnotatedClass(BlogComment.class);
+		localSessionFacBuilder.addAnnotatedClass(ForumComment.class);	
 		sessionFactory=localSessionFacBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		

@@ -44,6 +44,7 @@ public class Forum {
 	@Column(name="status")
 	private String status;
 	
+	
 	@Column(name="createdDate")
 	private Date createdDate;
 

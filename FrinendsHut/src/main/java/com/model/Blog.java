@@ -46,6 +46,17 @@ public class Blog {
 	
 	@Column(name="createdDate")
 	private Date createdDate;
+	
+	@Column(name="BLikes")
+	private int Blikes;
+
+	public int getBlikes() {
+		return Blikes;
+	}
+
+	public void setBlikes(int blikes) {
+		Blikes = blikes;
+	}
 
 	public int getBlogId() {
 		return blogId;
