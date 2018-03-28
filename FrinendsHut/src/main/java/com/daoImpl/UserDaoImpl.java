@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.configer.HibernateConfig;
 import com.dao.*;
 import com.model.User;
-import com.config.HibernateConfig;
 
 @Repository("UserDao")
 public class UserDaoImpl implements UserDao {
@@ -136,4 +136,14 @@ public class UserDaoImpl implements UserDao {
 		session.close();
         return user;
     }
+
+	public boolean checkLogin(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean updateOnlineStatus(String onlineStatus, User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

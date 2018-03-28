@@ -1,9 +1,6 @@
 package com.daoImpl;
 
 import java.util.List;
-
-import com.config.HibernateConfig;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.configer.HibernateConfig;
 import com.dao.BlogDao;
 import com.model.Blog;
 import com.model.BlogComment;
@@ -108,21 +107,81 @@ public class BlogDaoImpl implements BlogDao{
 			return false;
 		}
 	}
+	@Transactional
 	public boolean approveBlog(Blog blog) {
-		// TODO Auto-generated method stub
-		return false;
+		try
+		{
+			HibernateConfig hbConfig = new HibernateConfig();
+			SessionFactory sessionfac=hbConfig.getSessionFactory();
+			Session session=sessionfac.openSession();
+			blog.setStatus("Approved");
+			session.beginTransaction();
+		    session.saveOrUpdate(blog);
+			session.getTransaction().commit();
+			session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception Arised:"+e);
+			return false;
+		}
 	}
+	@Transactional
 	public boolean rejectBlog(Blog blog) {
-		// TODO Auto-generated method stub
-		return false;
+		try
+		{
+			HibernateConfig hbConfig = new HibernateConfig();
+			SessionFactory sessionfac=hbConfig.getSessionFactory();
+			Session session=sessionfac.openSession();
+			blog.setStatus("Reject");
+			session.beginTransaction();
+		    session.saveOrUpdate(blog);
+			session.getTransaction().commit();
+			session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception Arised:"+e);
+			return false;
+		}
 	}
+	@Transactional
 	public List<Blog> listBlog(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		 
+		HibernateConfig hbConfig = new HibernateConfig();
+		sessionFactory=hbConfig.getSessionFactory();
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		List<Blog> blogList = (List<Blog>) session.get(Blog.class, userName);
+		session.getTransaction().commit();
+		return blogList;
 	}
+	@Transactional
 	public boolean incrementLike(Blog blog) {
-		// TODO Auto-generated method stub
-		return false;
+	
+		try
+		{
+			HibernateConfig hbConfig = new HibernateConfig();
+			SessionFactory sessionfac=hbConfig.getSessionFactory();
+			Session session=sessionfac.openSession();
+			int likes = blog.getBlikes();
+			likes++;
+			blog.setBlikes(likes);
+			session.beginTransaction();
+		    session.saveOrUpdate(blog);
+			session.getTransaction().commit();
+			session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception Arised:"+e);
+			return false;
+		}
+		
+		
 	}
 	public boolean addBlogComment(BlogComment blogComment) {
 		// TODO Auto-generated method stub
@@ -136,12 +195,10 @@ public class BlogDaoImpl implements BlogDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public List<BlogComment> listBlogComments(int blogid) {
+	public List<BlogComment> listBlogComments(int blogId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-
 }
 
 

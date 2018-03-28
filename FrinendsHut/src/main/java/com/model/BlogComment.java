@@ -1,10 +1,14 @@
 package com.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class BlogComment {
 	
@@ -21,6 +25,11 @@ public class BlogComment {
 	//relational mapping required 
 	@Column(name="userName")
 	private String userName;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@Column(name="BlogCommentDate")
+	private Date BlogCommentDate;
+	
 	
 	//manytomany relation mapping required
 	@Column(name="blogid")
@@ -56,6 +65,14 @@ public class BlogComment {
 
 	public void setBlogComment(String blogComment) {
 		this.blogComment = blogComment;
-	}	
+	}
 
+	public Date getBlogCommentDate() {
+		return BlogCommentDate;
+	}
+
+	public void setBlogCommentDate(Date blogCommentDate) {
+		BlogCommentDate = blogCommentDate;
+	}	
+	
 }

@@ -21,6 +21,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Service 
 @Component
 @Entity
@@ -51,6 +53,7 @@ public class Job {
 	@Column(name="exp")
 	private String exp;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	@Column(name="pubdate")
 	private Date pubdate;
 	

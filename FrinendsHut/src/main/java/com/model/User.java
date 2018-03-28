@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Service 
 @Component
 @Entity
@@ -51,11 +53,16 @@ public class User {
     @Column(name="ADDRESS")
     private String address;
     
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name="DOB")
     private Date dob;
     
     @Column(name="user_role")
     private String role;
+    
+    @Column(name="onlinestatus")
+    private String onlinestatus;
+    
 
 	public int getId() {
 		return id;
@@ -63,6 +70,14 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getOnlinestatus() {
+		return onlinestatus;
+	}
+
+	public void setOnlinestatus(String onlinestatus) {
+		this.onlinestatus = onlinestatus;
 	}
 
 	public String getSsoId() {

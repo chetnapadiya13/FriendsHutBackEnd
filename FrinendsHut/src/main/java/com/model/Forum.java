@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Service 
 @Component
 @Entity
@@ -44,7 +46,7 @@ public class Forum {
 	@Column(name="status")
 	private String status;
 	
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	@Column(name="createdDate")
 	private Date createdDate;
 

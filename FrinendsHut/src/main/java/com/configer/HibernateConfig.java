@@ -1,4 +1,4 @@
-package com.config;
+package com.configer;
 
 
 import java.util.Properties;
@@ -25,7 +25,7 @@ import com.model.User;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com")
+@ComponentScan("com.*")
 public class HibernateConfig {
 
 
@@ -44,6 +44,7 @@ public class HibernateConfig {
 	}
 	
 	//Session Factory Bean Created.
+	
 	@Autowired
 	@Bean(name="sessionFactory")
 	public SessionFactory getSessionFactory()
@@ -53,14 +54,13 @@ public class HibernateConfig {
 		try{
 		Properties hibernateProperties=new Properties();
 		hibernateProperties.put("hibernate.temp.use_jdbc_metadata_defaults","false");
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto","UPDATE");
-	//	hibernateProperties.setProperty("hibernate.hbm2ddl.auto","NONE");
+	//	hibernateProperties.setProperty("hibernate.hbm2ddl.auto","update");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto","none");
 		hibernateProperties.put("hibernate.show_sql", "true");
 		hibernateProperties.put("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
 		
 		localSessionFacBuilder=new LocalSessionFactoryBuilder(getH2DataSource());
 		localSessionFacBuilder.addProperties(hibernateProperties);
-		//localSessionFacBuilder.scanPackages("com.Model");
 		localSessionFacBuilder.addAnnotatedClass(User.class);	
 		localSessionFacBuilder.addAnnotatedClass(Blog.class);
 		localSessionFacBuilder.addAnnotatedClass(Forum.class);	
@@ -80,6 +80,7 @@ public class HibernateConfig {
 	}
 	
 	//Transaction Bean Object
+	
 	@Autowired 
 	@Bean //(name="txName")
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)

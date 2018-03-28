@@ -1,7 +1,7 @@
 package com.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +19,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Service 
 @Component
@@ -44,6 +46,7 @@ public class Blog {
 	@Column(name="status")
 	private String status;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	@Column(name="createdDate")
 	private Date createdDate;
 	
@@ -102,8 +105,8 @@ public class Blog {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setCreatedDate(Date date) {
+		this.createdDate = date;
 	}
 	
 	

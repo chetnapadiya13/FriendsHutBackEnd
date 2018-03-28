@@ -2,9 +2,6 @@ package com.daoImpl;
 
 import java.util.List;
 
-
-import com.config.HibernateConfig;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.configer.HibernateConfig;
 import com.dao.ForumDao;
 import com.model.Blog;
 import com.model.Forum;
